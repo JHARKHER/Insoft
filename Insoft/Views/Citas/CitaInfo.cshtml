@@ -1,0 +1,27 @@
+﻿@model Insoft.Models.CitaBuscarViewModel
+@{
+    ViewBag.Title = "Cita Info";
+}
+<h2>Mantenimiento de Vehículos - Busqueda de Citas</h2>
+@using (Html.BeginForm("CitaInfo", "Citas", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <h4>Búsqueda de citas del cliente por Placa</h4>
+    <hr />
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Placa, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Placa)
+            @Html.ValidationMessageFor(model => model.Placa)
+        </div>
+    </div>    
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">            
+            <input type="submit" name="BtnNext" value="Next" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+} 

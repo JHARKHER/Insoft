@@ -19,35 +19,7 @@ namespace Insoft.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Insoft.Entities.Empleado", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Apellidos")
-                        .HasColumnType("varchar(75)");
-
-                    b.Property<string>("Departamento")
-                        .HasColumnType("varchar(30)");
-
-                    b.Property<string>("Domicilio")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("FechaIngreso")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Nombres")
-                        .HasColumnType("varchar(75)");
-
-                    b.Property<decimal>("Salario")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Empleados");
-                });
+           
 
             modelBuilder.Entity("Insoft.Entities.Cita", b =>
             {

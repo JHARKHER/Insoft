@@ -6,13 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace Insoft.Controllers
 {
     public class CitasController : Controller
     {
         private readonly ApplicationDBContext context;
-
+  
         public CitasController(ApplicationDBContext context)
         {
             this.context = context;
@@ -20,6 +24,8 @@ namespace Insoft.Controllers
 
         public ActionResult Index()
         {
+            var data = context.Citas.ToList();
+            ViewBag.userdetails = data;
             return View("CitaInfo");
         }
         private Cita GetCita()
@@ -28,7 +34,8 @@ namespace Insoft.Controllers
             {
                 HttpContext.Session.SetObject("DataObject", new Cita());
             }
-            return (Cita)HttpContext.Session.GetObject<Cita>("DataObject");
+            return (Cita) 
+            HttpContext.Session.GetObject<Cita>("DataObject");
         }
         private void RemoveCita()
         {
@@ -80,5 +87,6 @@ namespace Insoft.Controllers
                 RemoveCita();
             return View();
         }
+
     }
 }

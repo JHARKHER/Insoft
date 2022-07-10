@@ -41,6 +41,27 @@ namespace Insoft.Migrations
 
                 b.ToTable("Citas");
             });
+
+            modelBuilder.Entity("Insoft.Entities.sp_s_Reg", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Placa")
+                    .HasColumnType("varchar(22)");
+
+                b.Property<DateTime>("Fecha")
+                    .HasColumnType("datetime");
+
+                b.Property<string>("Estado")
+                    .HasColumnType("varchar(22)");
+
+                b.HasKey("Id"); 
+
+                b.ToTable("sp_s_Reg");
+            });
 #pragma warning restore 612, 618
         }
     }

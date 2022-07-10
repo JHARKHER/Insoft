@@ -1,0 +1,28 @@
+-- Crear la BD
+test0810
+
+--- Crear Citas
+USE [test0810]
+GO
+
+/****** Object:  Table [dbo].[Citas]    Script Date: 7/9/2022 10:13:30 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Citas](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Placa] [varchar](22) NULL,
+	[Fecha] [datetime] NULL,
+	[Estado] [varchar](22) NULL,
+ CONSTRAINT [PK_Citas] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+

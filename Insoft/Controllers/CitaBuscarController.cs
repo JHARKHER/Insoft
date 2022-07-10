@@ -23,9 +23,7 @@ namespace Insoft.Controllers
         }
 
         public ActionResult Index()
-        {
-            var data = context.Citas.ToList();
-            ViewBag.userdetails = data;
+        {            
             return View("CitaInfo");
         }
         private Cita GetCita()
@@ -48,35 +46,55 @@ namespace Insoft.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Cita Cita = GetCita();
-                    Cita.Placa = cita.Placa;
-                    HttpContext.Session.SetObject("DataObject", Cita);
-                    return View("GuardarInfo");
+                    Cita citas = GetCita();
+                    citas.Placa = cita.Placa;
+                    var data = context.Citas.Where(c => c.Placa == citas.Placa).ToList();
+                    ViewBag.userdetails = data;
+                    HttpContext.Session.SetObject("DataObject", citas);
+                    return View("ListarInfo");
                 }
+            }
+            return View();
+        }
+
+        public ActionResult ListarInfo(CitaBuscarViewModel cita, string BtnPrevious, string BtnNext)
+        {
+            Cita citas = GetCita();
+            if (BtnPrevious != null)
+            {
+                CitaBuscarViewModel info = new CitaBuscarViewModel();
+                info.Placa = citas.Placa;
+                return View("CitaInfo", info);
+            }
+            if (BtnNext != null)
+            {                                 
+                    citas.Placa = citas.Placa;                  
+                    HttpContext.Session.SetObject("DataObject", citas);
+                    return View("GuardarInfo");                
             }
             return View();
         }
 
         [HttpPost]
         public ActionResult GuardarInfo(CitaGuardarViewModel Guardar, string BtnPrevious, string BtnNext, string BtnCancel)
-        {
-            Cita Cita = GetCita();
+        {           
+            Cita citas = GetCita();
 
             if (BtnPrevious != null)
             {
                 CitaBuscarViewModel info = new CitaBuscarViewModel();
-                info.Placa = Cita.Placa;
+                info.Placa = citas.Placa;
                
-                return View("CitaInfo", info);
+                return View("ListarInfo", info);
             }
             if (BtnNext != null)
             {
                 if (ModelState.IsValid)
                 {
-                    Cita.Fecha = Guardar.Fecha;                    
-                    Cita.Estado = Guardar.Estado;
+                    citas.Fecha = Guardar.Fecha;
+                    citas.Estado = Guardar.Estado;
                     
-                    context.Citas.Add(Cita);
+                    context.Citas.Add(citas);
                     context.SaveChanges();
                     RemoveCita();
 

@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Cita Info";
 }
-<h2>Mantenimiento de Vehículos - Busqueda de Citas</h2>
+<h2>Mantenimiento de Vehículos</h2>
 @using (Html.BeginForm("CitaInfo", "Citas", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 <div class="form-horizontal">
-    <h4>Búsqueda de citas del cliente por Placa</h4>
+    <h4>Ingresa la Placa del Cliente y si vas a listar NEXT</h4>
     <hr />
     @Html.ValidationSummary(true)
     <div class="form-group">
@@ -24,39 +24,7 @@
         <div class="col-md-offset-2 col-md-10">            
             <a><input type="submit" name="BtnNext" value="Next" class="btn btn-default" /></a>
         </div>
-    </div>
-
-     @{  
-    ViewBag.Title = "Lista de Citas para este cliente con esta placa";  
-    }    
-        <h2>Lista de atenciones para este cliente con esta placa</h2>  
-        <div>  
-            <table id="t01">  
-                <thead>  
-                    <th>Id</th>  
-                    <th>Placa</th>  
-                    <th>Fecha</th>  
-                    <th>Estado</th>                  
-                </thead>  
-                @foreach (var item in ViewBag.userdetails)  
-                {    
-                        <tr>  
-                            <td>  
-                @item.Id  
-                </td>  
-                            <td>  
-                @item.Placa  
-                </td>  
-                            <td>  
-                @item.Fecha  
-                </td>  
-                            <td>  
-                @item.Estado  
-                </td>        
-                        </tr>    
-                }    
-            </table>  
-        </div>  
+    </div>  
 
 </div>
 } 
